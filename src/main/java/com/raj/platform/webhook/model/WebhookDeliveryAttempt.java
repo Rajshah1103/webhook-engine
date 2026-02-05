@@ -2,6 +2,7 @@ package com.raj.platform.webhook.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 public class WebhookDeliveryAttempt {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID attempteId;
 
     private UUID eventId;
