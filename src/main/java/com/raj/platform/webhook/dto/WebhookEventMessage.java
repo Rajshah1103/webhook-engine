@@ -9,5 +9,6 @@ public record WebhookEventMessage (
     String targetUrl,
     String payload,
     String idempotencyKey,
+    int attemptNumber,
     Instant createdAt
 ) {}

@@ -19,7 +19,8 @@ public class WebhookDeliveryAttempt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID attempteId;
+    @org.hibernate.annotations.UuidGenerator
+    private UUID attemptId;
 
     private UUID eventId;
 

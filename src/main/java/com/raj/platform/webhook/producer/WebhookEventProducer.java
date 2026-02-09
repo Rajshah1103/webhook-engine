@@ -35,10 +35,11 @@ public class WebhookEventProducer {
             String idempotencyKey
     ) {
         if(idempotencyKey != null) {
-            idempotencyKeyRepository.findByIdempotencyKey(idempotencyKey)
+            return idempotencyKeyRepository.findByIdempotencyKey(idempotencyKey)
                     .map(IdempotencyKey::getEventId)
                     .orElseGet(() -> createAndPublish(request, idempotencyKey));
         }
+        return createAndPublish(request, null);
     }
 
     private UUID createAndPublish(
@@ -53,6 +54,7 @@ public class WebhookEventProducer {
                 webhookCreateRequest.targetUrl(),
                 webhookCreateRequest.payload(),
                 idempotencyKey,
+                1,
                 Instant.now()
         );
         try {
